@@ -1,0 +1,6 @@
+___awdiv: CODE, 31522 0 164
+_main: CODE, 31686 0 568
+__initialization: CODE, 31472 0 8
+_initChip: CODE, 31490 0 32
+_values1: MEDIUMCONST, 32255 0 512
+Total: 1284

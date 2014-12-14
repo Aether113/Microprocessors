@@ -1,0 +1,46 @@
+MPLINK 5.04, LINKER
+Linker Map File - Created Sun Dec 14 16:18:58 2014
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                   .org_1       code   0x000008    program   0x000004
+                   .org_2       code   0x000018    program   0x000004
+                   .org_3       code   0x000020    program   0x00004a
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000005      
+                            0x000008    0x00000b      
+                            0x000018    0x00001b      
+                            0x000020    0x000069      
+            88 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                      FSM   0x00005a    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                     MAIN   0x000052    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                    START   0x000020    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+               inter_high   0x00005e    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                inter_low   0x000066    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    START   0x000020    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                     MAIN   0x000052    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                      FSM   0x00005a    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+               inter_high   0x00005e    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+                inter_low   0x000066    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 4 FSM.X/FSM.asm
+
+

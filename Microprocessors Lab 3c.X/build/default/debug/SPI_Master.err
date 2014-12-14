@@ -1,0 +1,3 @@
+Warning[207] /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3c.X/SPI_Master.asm 79 : Found label after column 1. (main)
+Warning[207] /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3c.X/SPI_Master.asm 80 : Found label after column 1. (btf)
+Warning[205] /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3c.X/SPI_Master.asm 110 : Found directive in column 1. (END)

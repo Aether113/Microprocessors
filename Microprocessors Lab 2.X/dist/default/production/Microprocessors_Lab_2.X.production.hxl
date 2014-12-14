@@ -1,0 +1,28 @@
+### HEXMate logfile and output summary ###
+### Memory Usage ###
+ Unused memory ranges:
+  0h - 7FFh
+  804h - 807h
+  8D0h - 8FFh
+  
+ dist/default/production/Microprocessors_Lab_2.X.production.hex ranges:
+  800h - 803h
+  808h - 8CFh
+  
+### Hex Memory Map ###
+ Legend:
+  - = Unused memory
+  F = Filled ROM
+  S = Stored serial code
+  A = Stored ASCII string
+  R = Reserved for checksum
+  C = Stored checksum result
+  T = Trailing code
+  & = Find & replace opcode
+  X = Find & delete opcode
+  1 = dist/default/production/Microprocessors_Lab_2.X.production.hex
+00000000: ----------------------------------------------------------------
+00000800: 1111----11111111111111111111111111111111111111111111111111111111
+00000840: 1111111111111111111111111111111111111111111111111111111111111111
+00000880: 1111111111111111111111111111111111111111111111111111111111111111
+000008C0: 1111111111111111------------------------------------------------

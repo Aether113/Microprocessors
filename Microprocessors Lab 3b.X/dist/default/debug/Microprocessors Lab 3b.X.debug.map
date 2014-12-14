@@ -1,0 +1,58 @@
+MPLINK 5.04, LINKER
+Linker Map File - Created Thu Nov 27 15:31:26 2014
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000800    program   0x000004
+                   .cinit    romdata   0x000804    program   0x000002
+                   .org_1       code   0x000808    program   0x000004
+                   .org_2       code   0x000818    program   0x000004
+                   .org_3       code   0x000820    program   0x00010e
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000800    0x000805      
+                            0x000808    0x00080b      
+                            0x000818    0x00081b      
+                            0x000820    0x00092d      
+            284 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             DOWN_COUNTER   0x000874    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                     LOOP   0x0008dc    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                    START   0x000820    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+               UP_COUNTER   0x000862    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+           check_transmit   0x00090c    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                    delay   0x0008b0    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                   delay1   0x0008da    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                 delay100   0x000886    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+               inter_high   0x000926    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                inter_low   0x00092a    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                     main   0x000850    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    START   0x000820    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                     main   0x000850    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+               UP_COUNTER   0x000862    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+             DOWN_COUNTER   0x000874    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                 delay100   0x000886    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                    delay   0x0008b0    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                   delay1   0x0008da    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                     LOOP   0x0008dc    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+           check_transmit   0x00090c    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+               inter_high   0x000926    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+                inter_low   0x00092a    program     static /Users/NiteLite/MPLABXProjects/Microprocessors Lab 3b.X/newAsmTemplate1.asm
+
+

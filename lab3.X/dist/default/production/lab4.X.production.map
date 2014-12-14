@@ -1,0 +1,66 @@
+MPLINK 5.04, LINKER
+Linker Map File - Created Tue Nov 18 20:01:49 2014
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000800    program   0x000004
+                   .cinit    romdata   0x000804    program   0x000002
+                   .org_1       code   0x000808    program   0x000004
+                   .org_2       code   0x000818    program   0x000004
+                   .org_3       code   0x000820    program   0x0000fe
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000800    0x000805      
+                            0x000808    0x00080b      
+                            0x000818    0x00081b      
+                            0x000820    0x00091d      
+            268 out of 33048 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+             DOWN_COUNTER   0x000896    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                     LOOP   0x0008fa    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+             RING_COUNTER   0x00085e    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                RING_DOWN   0x000876    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                  RING_UP   0x000868    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                    START   0x000820    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+               UP_COUNTER   0x000888    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                    delay   0x0008ce    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                   delay1   0x0008f8    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                 delay100   0x0008a4    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                down_loop   0x000896    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+               inter_high   0x000916    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                inter_low   0x00091a    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                     main   0x000844    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                  up_loop   0x000888    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    START   0x000820    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                     main   0x000844    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+             RING_COUNTER   0x00085e    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                  RING_UP   0x000868    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                RING_DOWN   0x000876    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+               UP_COUNTER   0x000888    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                  up_loop   0x000888    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+             DOWN_COUNTER   0x000896    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                down_loop   0x000896    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                 delay100   0x0008a4    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                    delay   0x0008ce    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                   delay1   0x0008f8    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                     LOOP   0x0008fa    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+               inter_high   0x000916    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+                inter_low   0x00091a    program     static /Users/NiteLite/MPLABXProjects/lab4.X/lab4.asm
+
+
