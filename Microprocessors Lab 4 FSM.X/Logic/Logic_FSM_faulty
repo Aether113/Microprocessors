@@ -42,7 +42,7 @@ OLDSTATE    equ 0x31
 ;***********************************************************
 ;				 Program Code Starts Here
 ;***********************************************************
-    ORG		0x820			; When debugging:0x020; when loading: 0x820
+    ORG		0x20			; When debugging:0x020; when loading: 0x820
 
 START
 
