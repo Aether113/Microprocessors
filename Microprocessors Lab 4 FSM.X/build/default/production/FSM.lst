@@ -1,4 +1,4 @@
-MPASM 5.58  /USERS/NITELITE/MPLABXPROJECTS/M   12-14-2014  16:18:49         PAGE  1
+MPASM 5.58  /USERS/NITELITE/MPLABXPROJECTS/M   12-15-2014  3:01:44         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -24,98 +24,156 @@ LOC  OBJECT CODE     LINE SOURCE TEXT
                       00009 
                       01578         LIST
                       00010 
-  00000021            00011 NEW    equ 0x21
-  00000022            00012 OLD    equ 0x22
-                      00013 
-                      00014 
-                      00015 ;***********************************************************
-                      00016 ;                                           Reset Vector
-                      00017 ;***********************************************************
-                      00018 
-                      00019         ORG             0x000                   ; Reset Vector
-                      00020                                                         ; When debugging:0x000; when loading: 0x800
-000000 EF?? F???      00021         GOTO    START
-                      00022 
-                      00023 
-                      00024 ;***********************************************************
-                      00025 ;                                           Interrupt Vector
-                      00026 ;***********************************************************
-                      00027 
-                      00028         ORG     0x008   ; Interrupt Vector  HIGH priority
-000008 EF?? F???      00029         GOTO    inter_high      ; When debugging:0x008; when loading: 0x808
-                      00030     ORG     0x018       ; Interrupt Vector  HIGH priority
-000018 EF?? F???      00031         GOTO    inter_low       ; When debugging:0x008; when loading: 0x808
-                      00032 
-                      00033 ;***********************************************************
-                      00034 ;                                Program Code Starts Here
-                      00035 ;***********************************************************
-                      00036     ORG         0x020                   ; When debugging:0x020; when loading: 0x820
-                      00037 
-000020                00038 START
-                      00039 
-                      00040     ;Configure PORTS
-000020 6A80           00041     clrf        PORTA           ; clear output data latches
-000022 0E3F           00042         movlw   0x3F            ; initialize data direction
-000024 6E92           00043         movwf   TRISA       ; RA<5:0> inputs  0011 1111
-                      00044 
-000026 6A81           00045     clrf        PORTB           ; clear output data latches
-000028 0E00           00046         movlw   0x00            ; RB<7:1> as outputs, RB0 is SDI
-00002A 6E93           00047         movwf   TRISB
-                      00048 
-00002C 6A82           00049     clrf        PORTC           ; clear output data latches
-00002E 0E00           00050         movlw   0x00        ;
-000030 6E94           00051         movwf   TRISC
-                      00052 
-000032 0E00           00053     movlw       0x00            ; Configure A/D for digital inputs 0000 1111
-000034 6EC1           00054         movwf   ADCON1
+  00000021            00011 NEW         equ 0x21
+  00000022            00012 OLD         equ 0x22
+  00000023            00013 SHIFTHIGH   equ 0x23
+  00000024            00014 SHIFTLOW    equ 0x24
+  00000025            00015 FLAG        equ 0x25
+                      00016 
+                      00017 
+                      00018 ;***********************************************************
+                      00019 ;                                           Reset Vector
+                      00020 ;***********************************************************
+                      00021 
+                      00022         ORG             0x000                   ; Reset Vector
+                      00023                                                         ; When debugging:0x000; when loading: 0x800
+000000 EF?? F???      00024         GOTO    START
+                      00025 
+                      00026 
+                      00027 ;***********************************************************
+                      00028 ;                                           Interrupt Vector
+                      00029 ;***********************************************************
+                      00030 
+                      00031         ORG     0x008       ; Interrupt Vector  HIGH priority
+000008 EF?? F???      00032         GOTO    inter_high      ; When debugging:0x008; when loading: 0x808
+                      00033     ORG     0x018       ; Interrupt Vector  HIGH priority
+000018 EF?? F???      00034         GOTO    inter_low       ; When debugging:0x008; when loading: 0x808
+                      00035 
+                      00036 ;***********************************************************
+                      00037 ;                                Program Code Starts Here
+                      00038 ;***********************************************************
+                      00039     ORG         0x020                   ; When debugging:0x020; when loading: 0x820
+                      00040 
+000020                00041 START
+                      00042 
+                      00043     ;Configure PORTS
+000020 6A80           00044     clrf        PORTA           ; clear output data latches
+000022 0E3F           00045         movlw   0x3F            ; initialize data direction
+000024 6E92           00046         movwf   TRISA       ; RA<5:0> inputs  0011 1111
+                      00047 
+000026 6A81           00048     clrf        PORTB           ; clear output data latches
+000028 0E00           00049         movlw   0x00            ; RB<7:1> as outputs, RB0 is SDI
+00002A 6E93           00050         movwf   TRISB
+                      00051 
+00002C 6A82           00052     clrf        PORTC           ; clear output data latches
+00002E 0E00           00053         movlw   0x00        ;
+000030 6E94           00054         movwf   TRISC
                       00055 
-000036 0E07           00056     movlw       0x07            ; Configure comparators for digital input
-000038 6EB4           00057         movwf   CMCON
+000032 0E00           00056     movlw       0x00            ; Configure A/D for digital inputs 0000 1111
+000034 6EC1           00057         movwf   ADCON1
                       00058 
-                      00059     ;Disable USB
-00003A 966D           00060         bcf             UCON,3          ; disable USB module
-00003C 866F           00061         bsf             UCFG,3          ; disable internal USB transceiver
-                      00062 
-                      00063     ;Timer(s) configuration
-00003E 6AD5           00064     CLRF    T0CON
-000040 6ACD           00065     CLRF    T1CON
-000042 8EF2           00066     BSF         INTCON, GIE             ; Global Interrupt Enable
-000044 8CF2           00067     BSF     INTCON, PEIE    ; Peripheral interrupts enabled
-000046 8AF2           00068     BSF     INTCON, TMR0IE  ; Timer 0 interrupt enabled
-000048 809D           00069         BSF             PIE1,  TMR1IE   ; Timer 1 interrupt enabled
-00004A 8ED5           00070     BSF     T0CON, TMR0ON   ; Timer 0 ON
-00004C 80CD           00071         BSF             T1CON, TMR1ON   ; Timer 1 ON
-00004E 6AD0           00072         CLRF    RCON                    ; Interrupt priority --> All high
-                      00073 
-                      00074     ;Initialisation
-                      00075 
-000050 6AE8           00076     clrf    WREG
-                      00077 
-                      00078     
-                      00079 
-000052                00080 MAIN
-                      00081 
-000052 EC?? F???      00082     CALL FSM
-000056 EF?? F???      00083     GOTO MAIN
-                      00084 
-00005A                00085 FSM
-                      00086 
-00005A EF?? F???      00087     goto FSM
-                      00088 
-00005E                00089 inter_high
-00005E 0F01           00090     ADDLW   0x01
-000060 94F2           00091     BCF     INTCON, TMR0IF  ;clear IF
-000062 909E           00092     BCF     PIR1,   TMR1IF  ;clear IF
-000064 0010           00093     RETFIE
+000036 0E07           00059     movlw       0x07            ; Configure comparators for digital input
+000038 6EB4           00060         movwf   CMCON
+                      00061 
+                      00062     ;Disable USB
+00003A 966D           00063         bcf             UCON,3          ; disable USB module
+00003C 866F           00064         bsf             UCFG,3          ; disable internal USB transceiver
+                      00065 
+                      00066     ;Timer(s) configuration
+00003E 6AD5           00067     CLRF    T0CON
+000040 6ACD           00068     CLRF    T1CON
+000042 8EF2           00069     BSF         INTCON, GIE             ; Global Interrupt Enable
+000044 8CF2           00070     BSF     INTCON, PEIE    ; Peripheral interrupts enabled
+000046 8AF2           00071     BSF     INTCON, TMR0IE  ; Timer 0 interrupt enabled
+000048 809D           00072         BSF             PIE1,  TMR1IE   ; Timer 1 interrupt enabled
+00004A 82A0           00073     BSF     PIE2,  TMR3IE   ; Timer 3 interrupt enabled
+                      00074 
+00004C 8ED5           00075     BSF     T0CON, TMR0ON   ; Timer 0 ON
+00004E 80CD           00076         BSF             T1CON, TMR1ON   ; Timer 1 ON
+000050 90B1           00077     BCF     T3CON, TMR3ON   ; Timer 3 ON
+                      00078 
+000052 82D5           00079     BSF     T0CON, T0PS1    ; Prescaler tmr0 @ 1:16
+000054 80D5           00080     BSF     T0CON, T0PS0    ; 12Mhz/(256*256*16) = 11Hz (good enough)
+000056 9ACD           00081     BCF     T1CON, T1CKPS1  ; Prescaler tmr1 @ 1:2
+000058 88CD           00082     BSF     T1CON, T1CKPS0  ; 12Mhz/(256*256*2) = 91Hz (around 100Hz)
+                      00083                             ; Nog aanpassen zodat exact 100Hz
+00005A 6AD0           00084         CLRF    RCON                    ; Interrupt priority --> All high
+                      00085 
+                      00086     ;Initialisation
+                      00087 
+00005C 0E15           00088     movlw   0x15            ; predetermined values to let
+00005E 6E23           00089     movwf   SHIFTHIGH       ; timer1 interrupt at exactly 100 Hz
+000060 0EA0           00090     movlw   0xA0            ; 12Mhz/(2*60000) = 100Hz so we have to
+000062 6E24           00091     movwf   SHIFTLOW        ; shift timer1 5536 up = 0X15A0 (see TMR1_init)
+                      00092 
+000064 6AE8           00093     clrf    WREG
                       00094 
-000066                00095 inter_low
-000066 0000           00096     nop
-000068 0010           00097     retfie
-                      00098 
-                      00099 
+000066                00095 MAIN
+                      00096 
+000066 B025           00097     BTFSC   FLAG,0          ;Timer0 overflowed flag set
+000068 EC?? F???      00098     CALL    Update_SW
+00006C EF?? F???      00099     GOTO    Stepper_FSM
                       00100 
-                      00101     END
-MPASM 5.58  /USERS/NITELITE/MPLABXPROJECTS/M   12-14-2014  16:18:49         PAGE  2
+000070                00101 Update_SW                   ; Move PORTA values to NEW
+                      00102 
+                      00103     ;MOVFF   NEW, OLD        ; Move current state to OLD
+                      00104     ;CLRF    NEW             ; Clear NEW
+                      00105     ;BTFSC   PORTA,0         ; Check PORTA,0 --> If set write to NEW,0
+                      00106     ;BSF     NEW,0
+                      00107     ;BTFSC   PORTA,1         ; Check PORTA,1 --> If set write to NEW,1
+                      00108     ;BSF     NEW,1
+                      00109     ;BTFSC   PORTA,2         ; etc...
+                      00110     ;BSF     NEW,2
+                      00111     ;BTFSC   PORTA,3
+                      00112     ;BSF     NEW,3
+                      00113     ;BCF     FLAG, 0
+000070 0E07           00114     MOVLW    b'00000111'
+000072 CFE8 F021      00115     MOVFF    WREG, NEW
+000076 0012           00116     RETURN
+                      00117 
+000078                00118 Stepper_FSM
+                      00119 
+000078 A021           00120     BTFSS   NEW,0         ; ON/OFF = OFF goto main
+00007A EF?? F???      00121     goto    MAIN
+00007E A221           00122     BTFSS   NEW,1           ; MANUAL/AUTO
+000080 EF?? F???      00123     goto    MANUAL
+000084 EF?? F???      00124     goto    AUTO
+                      00125 
+000088                00126 MANUAL
+                      00127 
+000088                00128 AUTO
+000088 9225           00129     BCF     FLAG,1
+                      00130 
+                      00131 
+00008A                00132 FSM
+                      00133 
+                      00134 
+                      00135 
+                      00136 
+                      00137 
+                      00138 
+00008A                00139 inter_high
+                      00140 
+00008A 6A25           00141     clrf    FLAG
+00008C B4F2           00142     btfsc   INTCON, TMR0IF
+00008E 8025           00143     bsf     FLAG,0          ;Timer0 overflowed --> Switch_FSM
+000090 B09E           00144     btfsc   PIR1, TMR1IF
+000092 8225           00145     bsf     FLAG,1          ;Timer1 overflowed --> Stepper_FSM
+000094 C023 FFCF      00146     movff   SHIFTHIGH, TMR1H;Shift TMR1H
+000098 C024 FFCE      00147     movff   SHIFTLOW, TMR1L ;Shift TMR1L
+                      00148 
+00009C 94F2           00149     BCF     INTCON, TMR0IF  ;clear IF
+00009E 909E           00150     BCF     PIR1,   TMR1IF  ;clear IF
+                      00151 
+0000A0 0010           00152     RETFIE
+                      00153 
+0000A2                00154 inter_low
+0000A2 0000           00155     nop
+0000A4 0010           00156     retfie
+                      00157 
+Warning[205]: Found directive in column 1. (END)
+                      00158 END
+MPASM 5.58  /USERS/NITELITE/MPLABXPROJECTS/M   12-15-2014  3:01:44         PAGE  2
 FSM
 
 SYMBOL TABLE
@@ -161,6 +219,7 @@ AN1                               00000001
 AN2                               00000002
 AN3                               00000003
 AN4                               00000005
+AUTO                              00000088
 BANKED                            00000001
 BAUDCON                           00000FB8
 BAUDCTL                           00000FB8
@@ -282,6 +341,7 @@ EPOUTEN                           00000002
 EPSTALL                           00000000
 FAST                              00000001
 FERR                              00000002
+FLAG                              00000025
 FLTS                              00000002
 FREE                              00000004
 FRM0                              00000000
@@ -296,7 +356,7 @@ FRM7                              00000007
 FRM8                              00000000
 FRM9                              00000001
 FSEN                              00000002
-FSM                               0000005A
+FSM                               0000008A
 FSR0                              00000000
 FSR0H                             00000FEA
 FSR0L                             00000FE9
@@ -406,7 +466,8 @@ LVV0                              00000000
 LVV1                              00000001
 LVV2                              00000002
 LVV3                              00000003
-MAIN                              00000052
+MAIN                              00000066
+MANUAL                            00000088
 N                                 00000004
 NEW                               00000021
 NOT_A                             00000005
@@ -543,6 +604,8 @@ SCS1                              00000001
 SE0                               00000005
 SEN                               00000000
 SENDB                             00000003
+SHIFTHIGH                         00000023
+SHIFTLOW                          00000024
 SMP                               00000007
 SOFIE                             00000006
 SOFIF                             00000006
@@ -581,6 +644,7 @@ SUSPND                            00000001
 SWDTE                             00000000
 SWDTEN                            00000000
 SYNC                              00000004
+Stepper_FSM                       00000078
 T08BIT                            00000006
 T0CKI                             00000004
 T0CON                             00000FD5
@@ -738,6 +802,7 @@ USBIP                             00000005
 USTAT                             00000F6C
 UTEYE                             00000007
 UTRDIS                            00000003
+Update_SW                         00000070
 VCFG0                             00000004
 VCFG1                             00000005
 VDIRMAG                           00000007
@@ -887,11 +952,11 @@ _WRTD_ON_6H                       0000007F
 _XINST_OFF_4L                     000000BF
 _XINST_ON_4L                      000000FF
 __18F2550                         00000001
-inter_high                        0000005E
-inter_low                         00000066
+inter_high                        0000008A
+inter_low                         000000A2
 
 Errors   :     0
-Warnings :     0 reported,     0 suppressed
+Warnings :     1 reported,     0 suppressed
 Messages :     0 reported,     0 suppressed
 
 
